@@ -1,10 +1,13 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using OfficeOpenXml;
+using OfficeOpenXml.Style;
 using QLDayHocWebApi.Models;
 using QLDayHocWebApi.ViewModels.Common;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -18,6 +21,72 @@ namespace QLDayHocWebApi.Admin
         public QuanLyThongTinsController(DA5_QLdayhocContext context)
         {
             _context = context;
+        }
+        [HttpGet("Index")]
+        public IActionResult Index()
+        {
+            var result = _context.Sinhviens.ToList();
+            return Ok(result);
+        }
+        [HttpGet("Export")]
+        public IActionResult Export()
+        {
+            var result = _context.Sinhviens.ToList();
+            var stream = new MemoryStream();
+
+            //Format Ctrl+A -> Home -> Format -> Column(with, height)
+
+
+            ////Format Ctrl+A -> Home -> Format -> Column(with, height)
+
+            var filePath = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, @"..\QLDayhocWebApi\ExcelTemplate\Danh_sach_sinh_vien.xlsx"));
+            FileInfo existingFile = new FileInfo(filePath);
+            ExcelPackage.LicenseContext = LicenseContext.Commercial;
+            // If you use EPPlus in a noncommercial context
+            // according to the Polyform Noncommercial license:
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            using (ExcelPackage package = new ExcelPackage(existingFile))
+            {
+                //get the first worksheet in the workbook
+                ExcelWorksheet sheet = package.Workbook.Worksheets[0];
+                // đổ dữ liệu vào sheet
+
+                int rowId = 4;
+                int stt = 1;
+                foreach (var row in result)
+                {
+                    sheet.Cells[rowId, 1].AutoFitColumns(10, 10);
+                    for (int i = 1; i <= 10; i++)
+                    {
+                        // Thêm border cho cột
+                        sheet.Cells[rowId, i].Style.Border.Top.Style = ExcelBorderStyle.Thin;
+                        sheet.Cells[rowId, i].Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                        sheet.Cells[rowId, i].Style.Border.Right.Style = ExcelBorderStyle.Thin;
+                        sheet.Cells[rowId, i].Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+                        // Thêm width vs height cho cột
+                        sheet.Cells[rowId, i + 1].AutoFitColumns(20, 20);
+                        sheet.Cells[rowId, i + 1].Merge = true;
+                    }
+                    sheet.Cells[rowId, 1].Value = stt;
+                    sheet.Cells[rowId, 2].Value = row.Masv;
+                    sheet.Cells[rowId, 3].Value = row.Tensv;
+                    sheet.Cells[rowId, 4].Value = row.GenderName;
+                    sheet.Cells[rowId, 5].Value = row.Ngaysinh;
+                    sheet.Cells[rowId, 6].Value = row.Diachinha;
+                    sheet.Cells[rowId, 7].Value = row.Dienthoai;
+                    sheet.Cells[rowId, 8].Value = row.Nganhhoc;
+                    sheet.Cells[rowId, 9].Value = row.Email;
+                    sheet.Cells[rowId, 10].Value = row.Malop;
+                    stt++;
+                    rowId++;
+                }
+                stream = new MemoryStream(package.GetAsByteArray());
+            }
+            stream.Position = 0;
+            var fileName = $"DanhSachSinhnVien_{DateTime.Now.ToString("dd-MM-yyyy")}.xlsx";
+            return File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                fileName);
+
         }
         #region Quản Lý học Phần
         [HttpPost("DanhSachHocPhan")]
@@ -374,19 +443,26 @@ namespace QLDayHocWebApi.Admin
         /// <returns></returns>
         // PUT api/<LophocsController>/5
         [HttpPut("UpdateLop/{id}")]
-        public JsonResult PutLophoc(long id, Lophoc lophoc)
+        public IActionResult PutLophoc(long id, Lophoc lophoc)
         {
             _context.Entry(lophoc).State = EntityState.Modified;
             try
             {
                 _context.SaveChanges();
+                return new JsonResult("ok");
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception ex)
             {
-                throw;
+                var result = new
+                {
+                    devMsg = ex.Message,
+                    useMsg = "có lỗi xảy ra",
+                    data = DBNull.Value
+                };
+                return StatusCode(500, result);
             }
 
-            return new JsonResult("Update thành công.");
+          
         }
 
         // DELETE api/<LophocsController>/5

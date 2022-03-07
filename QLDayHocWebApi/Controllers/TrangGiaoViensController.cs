@@ -96,7 +96,7 @@ namespace QLDayHocWebApi.Controllers
        
         #endregion
 
-        #region 3. KHI ẤN VÀO HỌC TRỰC TUYẾN
+        #region 3. KHI ẤN VÀO 'HỌC TRỰC TUYẾN'
         [HttpPost("HocTrucTuyen")]
         public IActionResult HocTrucTuyen(Dictionary<string, object> data)
         {
@@ -570,7 +570,7 @@ namespace QLDayHocWebApi.Controllers
         }
         //
         [HttpPost("ThemSinhVienVaoLop")]
-        public IActionResult add(Hoctap h)
+        public IActionResult ThemSinhVienVaoLop(Hoctap h)
         {
             //if (giangdayExists((long)h.Magiangday) && sinhvienExists((long)h.Masv))
             //{
@@ -589,6 +589,15 @@ namespace QLDayHocWebApi.Controllers
                 throw ex;
             }
             //}
+        }
+
+        [HttpDelete("XoaSinhVienRaKhoiLop/{mahoctap}")]
+        public IActionResult XoaSinhVienRaKhoiLop(long mahoctap)
+        {
+            var rs = _context.Hoctaps.FirstOrDefault(x=>x.Mahoctap== mahoctap);
+            _context.Hoctaps.Remove(rs);
+            _context.SaveChanges();
+            return StatusCode(201, null);
         }
         private bool sinhvienExists(long id)
         {

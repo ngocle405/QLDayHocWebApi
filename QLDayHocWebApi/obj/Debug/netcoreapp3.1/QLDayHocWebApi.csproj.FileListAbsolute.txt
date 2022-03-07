@@ -402,3 +402,20 @@ D:\QL_dayhoc_DA5\QLDayHocWebApi\QLDayHocWebApi\obj\Debug\netcoreapp3.1\QLDayHocW
 D:\QL_dayhoc_DA5\QLDayHocWebApi\QLDayHocWebApi\obj\Debug\netcoreapp3.1\QLDayHocWebApi.pdb
 D:\QL_dayhoc_DA5\QLDayHocWebApi\QLDayHocWebApi\obj\Debug\netcoreapp3.1\QLDayHocWebApi.genruntimeconfig.cache
 D:\ASP.NET Core WEB API\QLDayHocWebApi\QLDayHocWebApi\obj\Debug\netcoreapp3.1\QLDayHocWebApi.csproj.CopyComplete
+D:\ASP.NET Core WEB API\QLDayHocWebApi\QLDayHocWebApi\bin\Debug\netcoreapp3.1\EPPlus.dll
+D:\ASP.NET Core WEB API\QLDayHocWebApi\QLDayHocWebApi\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.FileExtensions.dll
+D:\ASP.NET Core WEB API\QLDayHocWebApi\QLDayHocWebApi\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Json.dll
+D:\ASP.NET Core WEB API\QLDayHocWebApi\QLDayHocWebApi\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileProviders.Abstractions.dll
+D:\ASP.NET Core WEB API\QLDayHocWebApi\QLDayHocWebApi\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileProviders.Physical.dll
+D:\ASP.NET Core WEB API\QLDayHocWebApi\QLDayHocWebApi\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileSystemGlobbing.dll
+D:\ASP.NET Core WEB API\QLDayHocWebApi\QLDayHocWebApi\bin\Debug\netcoreapp3.1\Microsoft.IO.RecyclableMemoryStream.dll
+D:\ASP.NET Core WEB API\QLDayHocWebApi\QLDayHocWebApi\bin\Debug\netcoreapp3.1\System.Text.Encoding.CodePages.dll
+D:\ASP.NET Core WEB API\QLDayHocWebApi\QLDayHocWebApi\bin\Debug\netcoreapp3.1\System.Xml.XPath.XmlDocument.dll
+D:\ASP.NET Core WEB API\QLDayHocWebApi\QLDayHocWebApi\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\ASP.NET Core WEB API\QLDayHocWebApi\QLDayHocWebApi\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\ASP.NET Core WEB API\QLDayHocWebApi\QLDayHocWebApi\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Text.Encoding.CodePages.dll
+D:\ASP.NET Core WEB API\QLDayHocWebApi\QLDayHocWebApi\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+D:\ASP.NET Core WEB API\QLDayHocWebApi\QLDayHocWebApi\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+D:\ASP.NET Core WEB API\QLDayHocWebApi\QLDayHocWebApi\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\ASP.NET Core WEB API\QLDayHocWebApi\QLDayHocWebApi\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\ASP.NET Core WEB API\QLDayHocWebApi\QLDayHocWebApi\obj\Debug\netcoreapp3.1\QLDayHocWebApi.MvcApplicationPartsAssemblyInfo.cs

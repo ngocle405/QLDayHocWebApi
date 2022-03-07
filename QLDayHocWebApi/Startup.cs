@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 using QLDayHocWebApi.Models;
 using System;
 using System.Collections.Generic;
@@ -36,6 +37,10 @@ namespace QLDayHocWebApi
             services.AddDbContext<DA5_QLdayhocContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DA5_QLdayhoc")));
             services.AddControllers();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "QLDayhocWebApi", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +49,8 @@ namespace QLDayHocWebApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "QLDayhocWebApi v1"));
             }
             app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseRouting();

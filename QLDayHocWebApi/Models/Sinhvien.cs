@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QLDayHocWebApi.Enums;
+using System;
 using System.Collections.Generic;
 
 // Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
@@ -7,7 +8,7 @@ using System.Collections.Generic;
 
 namespace QLDayHocWebApi.Models
 {
-    public partial class Sinhvien
+    public  class Sinhvien
     {
         public Sinhvien()
         {
@@ -30,7 +31,29 @@ namespace QLDayHocWebApi.Models
         public string Cmnd { get; set; }
         public string Dantoc { get; set; }
         public string Tongiao { get; set; }
-        public bool? Gioitinh { get; set; }
+        public Gender? Gioitinh { get; set; }
+       
+        /// <summary>
+        /// Lấy ra giới tính dựa vào tên
+        /// </summary>
+        /// CreateBy: LENGOC(20/12/2021)
+        public string GenderName
+        {
+            get
+            {
+                switch (Gioitinh)
+                {
+                    case Gender.Male:
+                        return "Nam";
+                    case Gender.Female:
+                        return "Nữ";
+                    case Gender.Other:
+                        return "Khác";
+                    default: return null;
+                }
+            }
+
+        }
         public string Chuyennganh { get; set; }
         public string Nganhhoc { get; set; }
         public string Hedaotao { get; set; }
